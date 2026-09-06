@@ -380,13 +380,10 @@ namespace AotForms
         {
             var vList = ImGui.GetForegroundDrawList();
             
-            // 4-directional 1px clean stroke outline (no heavy artificial bold doubling)
-            vList.AddText(new Vector2(pos.X - 1f, pos.Y), outlineColor, text);
-            vList.AddText(new Vector2(pos.X + 1f, pos.Y), outlineColor, text);
-            vList.AddText(new Vector2(pos.X, pos.Y - 1f), outlineColor, text);
-            vList.AddText(new Vector2(pos.X, pos.Y + 1f), outlineColor, text);
+            // Clean 1px drop shadow for ultra-thin sharp text
+            vList.AddText(new Vector2(pos.X + 1f, pos.Y + 1f), ColorToUint32(Color.FromArgb(160, 0, 0, 0)), text);
 
-            // Main text
+            // Crisp single-pass main text
             vList.AddText(pos, textColor, text);
         }
 
